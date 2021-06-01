@@ -1,11 +1,14 @@
 /// Convert an integer to its ordinal as a string. 1 is '1st', 2 is '2nd',
 /// 3 is '3rd', etc. works for any integer.
-String ordinal(int value) {
+String? ordinal(int? value) {
   assert(value != null, '[value] must not be null');
+  if(value==null){
+    return "";
+  }
 
   int tempValue;
   dynamic templates;
-  String finalValue;
+  String? finalValue;
 
   List valueSpecial = [11, 12, 13];
 
@@ -63,7 +66,7 @@ String intComma(int value) {
 
    // Use RegExp function witch used to match strings or parts of strings
    RegExp reg = new RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))');
-   Function mathFunc = (Match match) => '${match[1]},';
+   var mathFunc = (Match match) => '${match[1]},';
    
    // Store the result in a new String value
 
@@ -76,10 +79,7 @@ String intComma(int value) {
 /// for numbers over 1 million. For example, 1000000 becomes '1.0 million',
 /// 1200000 becomes '1.2 million' and '1200000000' becomes '1.2 billion'.
 String intWord(int value) {
-  if (value < 1000000){
-    return "$value";
-  }
-  // TODO : Implement numbers Hight to 1M
+  return "$value";
 }
 
 /// For numbers 1-9, return the number spelled out. Otherwise, return the
